@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ritvik Shukla — Environmental Social Science, ASU</title>
+<meta name="description" content="Ritvik Shukla, PhD candidate in Environmental Social Science at Arizona State University. Research on governance and equity in electric vehicle charging infrastructure.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ►►► COLOUR PALETTE — change these six values to re-tint the whole page. */
+  :root{
+    --ink:      #2A2342;   /* deep plum — all body text  */
+    --paper:    #FBF9FE;   /* near-white with a lilac cast */
+    --graphite: #6E6790;   /* muted periwinkle — secondary text */
+    --rule:     #E6E0F5;   /* hairlines and borders */
+    --sky:      #6E9BE0;   /* light blue accent */
+    --lilac:    #9B7FD4;   /* light purple accent */
+    --wash:     #F1ECFB;   /* soft fill behind figures / empty states */
+
+    --sweep: linear-gradient(100deg, var(--sky), var(--lilac));
+
+    --display: "Fraunces", Georgia, serif;
+    --body:    "Newsreader", Georgia, serif;
+    --mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+    --gutter: clamp(1.25rem, 4vw, 4rem);
+    --rail: 11rem;
+    --round: 14px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:clamp(1rem, .95rem + .25vw, 1.125rem);
+    line-height:1.7;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* soft blue→lilac wash behind the top of the page */
+  body::before{
+    content:"";
+    position:fixed; inset:0 0 auto 0; height:70vh;
+    background:
+      radial-gradient(60rem 30rem at 12% -10%, color-mix(in srgb, var(--sky) 22%, transparent), transparent 65%),
+      radial-gradient(50rem 28rem at 88% -6%, color-mix(in srgb, var(--lilac) 24%, transparent), transparent 62%);
+    pointer-events:none; z-index:0;
+  }
+  .nav, main, footer{ position:relative; z-index:1; }
+
+  a{ color:inherit; }
+
+  .label{
+    font-family:var(--mono);
+    font-size:.7rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--graphite);
+  }
+
+  .wrap{
+    max-width:74rem;
+    margin:0 auto;
+    padding-inline:var(--gutter);
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav__inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem; padding-block:.85rem;
+  }
+  .nav__mark{
+    font-family:var(--mono); font-size:.8rem; font-weight:500;
+    letter-spacing:.1em;
+  }
+  .nav__mark span{ color:var(--lilac); }
+  .nav__links{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+  .nav__links a{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.12em;
+    text-transform:uppercase; text-decoration:none; color:var(--graphite);
+    padding-bottom:3px; border-bottom:1.5px solid transparent;
+    transition:color .18s ease, border-color .18s ease;
+  }
+  .nav__links a:hover,
+  .nav__links a:focus-visible{ color:var(--ink); border-bottom-color:var(--lilac); }
+
+  /* ---------- shared section shell ---------- */
+  .band{ border-bottom:1px solid var(--rule); }
+  .band__inner{
+    display:grid;
+    grid-template-columns:var(--rail) minmax(0,1fr);
+    gap:clamp(1.5rem,4vw,3.5rem);
+    padding-block:clamp(3rem,7vw,5.5rem);
+  }
+  .band__rail .label{ position:sticky; top:5rem; display:block; }
+  .band__rail .label::after{
+    content:""; display:block;
+    width:2.4rem; height:2px; margin-top:.6rem;
+    border-radius:2px; background:var(--sweep);
+  }
+  @media (max-width:800px){
+    .band__inner{ grid-template-columns:1fr; gap:1.25rem; }
+    .band__rail .label{ position:static; }
+  }
+
+  h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.6rem,1.2rem + 1.6vw,2.4rem);
+    line-height:1.15;
+    letter-spacing:-.015em;
+    margin:0 0 1.2rem;
+  }
+  h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.15rem,1rem + .6vw,1.45rem);
+    line-height:1.25;
+    letter-spacing:-.005em;
+    margin:.35rem 0 .7rem;
+  }
+  p{ margin:0 0 1rem; max-width:62ch; }
+
+  /* ---------- hero ---------- */
+  .hero__inner{
+    display:flex;
+    flex-wrap:wrap;
+    gap:clamp(1.5rem,4vw,2.75rem);
+    align-items:flex-start;
+    padding-block:clamp(3.5rem,9vw,7rem) clamp(2.5rem,6vw,4.5rem);
+  }
+  .hero__text{ flex:1 1 22rem; min-width:0; }
+  @media (max-width:860px){
+    .hero__inner{ gap:1.5rem; }
+  }
+
+  .hero h1{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(2.6rem,1.6rem + 4.4vw,4.75rem);
+    line-height:1;
+    letter-spacing:-.02em;
+    margin:.6rem 0 1.4rem;
+    background:var(--sweep);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero__lede{
+    font-size:clamp(1.15rem,1rem + .55vw,1.5rem);
+    line-height:1.5;
+    max-width:30ch;
+    margin-bottom:1.8rem;
+  }
+  .hero__lede em{
+    font-style:italic;
+    box-shadow:inset 0 -.38em 0 color-mix(in srgb, var(--lilac) 20%, transparent);
+  }
+  .hero__meta{
+    display:flex; flex-wrap:wrap; gap:.4rem 1rem;
+    padding-top:1.1rem; border-top:1px solid var(--rule);
+  }
+  .hero__meta a{ color:var(--lilac); text-decoration:none; border-bottom:1px solid currentColor; }
+
+  /* ---------- portrait  [EDIT #1 — headshot size & crop] ---------- */
+  .portrait{
+    margin:.35rem 0 0;
+    position:relative;
+    flex:0 0 auto;
+    margin-left:auto;       /* pushes the photo to the far right */
+    width:4in;              /* ← PHOTO SIZE. Change this number to resize. */
+    max-width:100%;
+  }
+
+  /* soft blue→lilac arc, offset behind the photo */
+  .portrait::before{
+    content:"";
+    position:absolute;
+    inset:auto -.55rem -.55rem auto;
+    width:62%; height:62%;
+    border-radius:0 0 var(--round) 0;
+    background:var(--sweep);
+    opacity:.35;
+  }
+  .portrait img{
+    position:relative;
+    display:block;
+    width:100%;
+    aspect-ratio:1/1;       /* square frame */
+    object-fit:cover;       /* fills the square edge to edge — no white bars */
+    object-position:center 25%;  /* ← CROP POSITION. Lower % = crop higher up. */
+    border:1px solid var(--rule);
+    border-radius:var(--round);
+    box-shadow:0 20px 45px -30px color-mix(in srgb, var(--ink) 60%, transparent);
+  }
+  .figcap{
+    font-family:var(--mono); font-size:.68rem; line-height:1.5;
+    color:var(--graphite); margin-top:.7rem;
+  }
+  .figcap b{ color:var(--ink); font-weight:500; }
+
+  /* ---------- work cards ---------- */
+  .work{ display:grid; gap:clamp(2rem,4vw,3rem); }
+  .card{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+    gap:clamp(1.25rem,3vw,2.5rem);
+    align-items:start;
+    padding-top:1.6rem;
+    border-top:1px solid var(--rule);
+  }
+  .card:first-child{ border-top:0; padding-top:0; }
+  .card--figure-wide{ grid-template-columns:1fr; }
+  .card--figure-wide .snapshot{ max-width:none; }
+  @media (max-width:760px){ .card{ grid-template-columns:1fr; } }
+
+  .status{
+    --dot:var(--sky);
+    display:inline-flex; align-items:center; gap:.55rem;
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--graphite);
+  }
+  .status.is-violet{ --dot:var(--lilac); }
+  .status::before{
+    content:""; width:.45rem; height:.45rem; border-radius:50%;
+    background:var(--dot);
+    animation:blink 2s ease-in-out infinite;   /* live indicator */
+  }
+  @keyframes blink{
+    0%, 100%{ opacity:1;  box-shadow:0 0 0 0 color-mix(in srgb, var(--dot) 45%, transparent); }
+    50%     { opacity:.4; box-shadow:0 0 0 .3rem color-mix(in srgb, var(--dot) 0%, transparent); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .status::before{ animation:none; }
+  }
+
+  .tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.9rem; padding:0; list-style:none; }
+  .tags li{
+    font-family:var(--mono); font-size:.66rem; letter-spacing:.06em;
+    color:var(--graphite);
+    border:1px solid var(--rule); border-radius:999px;
+    background:color-mix(in srgb, var(--wash) 60%, transparent);
+    padding:.24rem .7rem;
+  }
+
+  .snapshot{ margin:0; }
+  .snapshot img{
+    display:block; width:100%; height:auto;
+    border:1px solid var(--rule);
+    border-radius:var(--round);
+    background:#fff;
+    box-shadow:0 18px 40px -32px color-mix(in srgb, var(--ink) 60%, transparent);
+  }
+  .snapshot__empty{
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    aspect-ratio:4/3;
+    border:1px dashed color-mix(in srgb, var(--lilac) 35%, var(--rule));
+    border-radius:var(--round);
+    background:color-mix(in srgb, var(--wash) 70%, transparent);
+    padding:1.25rem;
+  }
+  .snapshot__empty span{
+    font-family:var(--mono); font-size:.68rem; line-height:1.7;
+    color:var(--graphite); max-width:24ch;
+  }
+
+  /* ---------- JET Center carousel ---------- */
+  .jet-intro{ margin-bottom:2rem; }
+
+  .carousel{ position:relative; }
+  .carousel__viewport{
+    display:flex;
+    gap:clamp(1.25rem,3vw,2.5rem);
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .carousel__viewport::-webkit-scrollbar{ display:none; }
+  @media (prefers-reduced-motion: reduce){
+    .carousel__viewport{ scroll-behavior:auto; }
+  }
+
+  .slide{
+    flex:0 0 100%;
+    scroll-snap-align:start;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+    gap:clamp(1.25rem,3vw,2.5rem);
+    align-items:start;
+  }
+  @media (max-width:760px){ .slide{ grid-template-columns:1fr; } }
+
+  .slide .yr{
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--graphite);
+  }
+
+  /* timer bar — one sweep = one auto-advance */
+  .jet-timer{
+    height:3px; margin-top:1.75rem;
+    background:var(--rule);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .jet-timer i{
+    display:block; height:100%; width:100%;
+    background:var(--sweep);
+    transform-origin:left;
+    animation:sweep 7s linear infinite;
+  }
+  @keyframes sweep{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+  .carousel.is-paused .jet-timer i{ animation-play-state:paused; }
+  @media (prefers-reduced-motion: reduce){
+    .jet-timer i{ animation:none; transform:scaleX(0); }
+  }
+
+  .carousel__controls{
+    display:flex; align-items:center; gap:.6rem;
+    margin-top:.9rem;
+  }
+  .cbtn{
+    width:2.15rem; height:2.15rem;
+    display:grid; place-items:center;
+    font-family:var(--mono); font-size:.85rem; line-height:1;
+    color:var(--graphite);
+    background:transparent;
+    border:1px solid var(--rule); border-radius:999px;
+    cursor:pointer;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .cbtn:hover,.cbtn:focus-visible{
+    color:var(--ink);
+    border-color:var(--lilac);
+    background:color-mix(in srgb, var(--wash) 80%, transparent);
+  }
+  .dots{ display:flex; gap:.5rem; margin-left:.5rem; }
+  .dot{
+    width:.5rem; height:.5rem; padding:0;
+    border:1px solid var(--graphite); border-radius:50%;
+    background:transparent; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .dot[aria-current="true"]{ background:var(--lilac); border-color:var(--lilac); }
+  .carousel__count{
+    margin-left:auto;
+    font-family:var(--mono); font-size:.68rem; letter-spacing:.1em;
+    color:var(--graphite);
+  }
+
+  /* ---------- cv ---------- */
+  .cta{
+    display:inline-flex; align-items:center; gap:.6rem;
+    font-family:var(--mono); font-size:.75rem; letter-spacing:.1em;
+    text-transform:uppercase; text-decoration:none;
+    color:#fff; background:var(--sweep);
+    padding:.9rem 1.5rem;
+    border:0; border-radius:999px;
+    margin-bottom:2.2rem;
+    box-shadow:0 14px 30px -18px color-mix(in srgb, var(--lilac) 85%, transparent);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta:hover,.cta:focus-visible{
+    transform:translateY(-1px);
+    box-shadow:0 18px 34px -16px color-mix(in srgb, var(--lilac) 90%, transparent);
+  }
+
+  .entries{ list-style:none; margin:0; padding:0; }
+  .entries li{
+    display:grid;
+    grid-template-columns:7.5rem minmax(0,1fr);
+    gap:1rem;
+    padding:.9rem 0;
+    border-top:1px solid var(--rule);
+  }
+  .entries li:first-child{ border-top:0; padding-top:0; }
+  @media (max-width:560px){
+    .entries li{ grid-template-columns:1fr; gap:.15rem; }
+  }
+  .entries .yr{ font-family:var(--mono); font-size:.75rem; color:var(--graphite); padding-top:.35rem; }
+  .entries .deg{ font-family:var(--display); font-weight:600; font-size:1.02rem; line-height:1.3; }
+  .entries .inst{ color:var(--graphite); font-size:.95rem; }
+
+  /* ---------- contact ---------- */
+  .contact-list{ list-style:none; margin:0; padding:0; display:grid; gap:.55rem; }
+  .contact-list a{ color:var(--lilac); text-decoration:none; border-bottom:1px solid var(--rule); }
+  .contact-list a:hover,.contact-list a:focus-visible{ border-bottom-color:currentColor; }
+  .contact-list .k{ font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--graphite); margin-right:.6rem; }
+
+  footer .wrap{ padding-block:2rem; }
+  footer p{ font-family:var(--mono); font-size:.68rem; color:var(--graphite); margin:0; }
+
+  :focus-visible{ outline:2px solid var(--lilac); outline-offset:3px; }
+
+  .skip{
+    position:absolute; left:-9999px;
+    background:var(--ink); color:var(--paper);
+    padding:.6rem 1rem; font-family:var(--mono); font-size:.75rem;
+    border-radius:999px;
+  }
+  .skip:focus{ left:1rem; top:1rem; z-index:50; }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap nav__inner">
+    <div class="nav__mark">RITVIK SHUKLA <span>/</span> ASU</div>
+    <div class="nav__links">
+      <a href="#research">Research</a>
+      <a href="#work">Work in progress</a>
+      <a href="#jet">JET Center</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <header class="band hero">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <p class="label">PhD Candidate · School of Human Evolution &amp; Social Change</p>
+        <h1>Ritvik<br>Shukla</h1>
+        <p class="hero__lede">Environmental scientist working on the governance of <em>energy transition</em> — and on what makes those transitions just.</p>
+        <div class="hero__meta label">
+          <span>Tempe, Arizona</span>
+          <span>PhD expected May 2027</span>
+          <span><a href="mailto:rshukla9@asu.edu">rshukla9@asu.edu</a></span>
+        </div>
+      </div>
+
+      <!-- ►►► EDIT #1 — HEADSHOT.
+           File lives in the repo ROOT (same folder as index.html).
+           To swap photos: upload the new file to the root, then change the
+           src="..." below to the new filename.
+           Spaces in a filename must be written as %20.
+           Size and crop are controlled in the CSS: search for "EDIT #1" there. -->
+      <figure class="portrait">
+        <img src="IMG_0485%20(3).JPG" alt="Portrait of Ritvik Shukla" loading="eager" decoding="async">
+      </figure>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="band" id="research">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">Research</span></div>
+      <div>
+        <h2>Just transitions, from the community up</h2>
+        <p>I am an Environmental Scientist focused on the complex challenges arising from energy transition in the global north. I have been trained in multi-disciplinary teams consisting of environmental scientists, geographers, political scientists, urban planners, and governance scholars. My proudest works have focused on community-focused efforts in ensuring Just Transitions, while my other, equally important works include transitions at state and county levels pertaining to renewable energy and electric vehicles.</p>
+        <p>My dissertation, <em style="font-style:italic">Governance and Equity in Electric Vehicle Charging Infrastructure</em>, asks how the institutions that fund, site, and regulate public charging shape who actually gets access to it. I am on the academic job market for positions beginning in 2027.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK IN PROGRESS ============ -->
+  <section class="band" id="work">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">Work in progress</span></div>
+      <div class="work">
+
+        <!-- ►►► EDIT #5 — WORK IN PROGRESS ENTRIES.
+             Each <article class="card"> is one project. To add another, copy a
+             whole <article>...</article> block and edit the text inside.
+             The dot colour comes from the <p class="status"> line:
+               class="status"            → light blue dot
+               class="status is-violet"  → light purple dot
+             A card with no figure yet: delete its <figure> block entirely. -->
+
+        <article class="card card--figure-wide">
+          <div>
+            <p class="status">Manuscript in progress</p>
+            <h3>Restructuring of Arizona's EV charging governance network</h3>
+            <p>Arizona offers an unusual vantage point on charging infrastructure politics: buildout has been federally funded since 2009, led through the Arizona Corporation Commission, under a purple legislature and a moderate EV agenda — sitting between early adopters like California and New York and the lagging southern states.</p>
+            <p>Mapping the state-level governance network over time reveals four distinct periods of restructuring, each tracking fluctuations in nationally funded programs. The 2025 federal funding freeze registers as a major disruption to the network.</p>
+            <ul class="tags">
+              <li>Governance networks</li>
+              <li>EVCI</li>
+              <li>Policy analysis</li>
+            </ul>
+          </div>
+          <!-- ►►► EDIT #2 — EVCI NETWORK FIGURE.
+               Upload your image to the "images" folder in the repo, named
+               evci-network.png (or change the src below to match your filename).
+               Until a file exists there, a dashed placeholder box shows instead. -->
+          <figure class="snapshot">
+            <img src="evci_actors_edges_stations_by_year.gif" alt="Temporal growth of EVCI Governance Network (Actors and Collaboative Ties)." onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/evci-network.png&lt;/span&gt;&lt;/div&gt;'">
+          </figure>
+        </article>
+
+        <article class="card">
+          <div>
+            <p class="status is-violet">Manuscript Under Review</p>
+            <h3>Distributional Inequalities in Maricopa County's Electric Vehicle Charging Infrastructure</h3>
+            <p>This study is the first paper to come out of my dissertation and investigates the supply side of the EVCI landscape. In doing so, this study addresses an analytical gap regarding the spatial distribution of EVCI by incorporating residents' proximity to public charging options and the distribution of residents around chargers.</p>
+            <p>We develop a novel methodological metric <i>"Population and Proximity Integrated Density " </i> and compare distribution across socio-economic indicators against those produced by binary and count-based metrics. The figure to the right highlights the added granularity to distribution patterns achieved through the PPID metric</p>
+            <ul class="tags">
+              <li>Spatial Statistics</li>
+              <li>Equitable Access</li>
+              <li>Electric Vehicle Charging</li>
+            </ul>
+          </div>
+          <!-- ►►► EDIT #3 — GWR MAP FIGURE.
+               Upload your image to the "images" folder, named gwr-local-r2.png
+               (or change the src below to match your filename). -->
+          <figure class="snapshot">
+            <img src="evci_methods_wipe.gif" alt="Comparison of Binary, count-based, and Population and Proximity Integrated Density measures" onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/gwr-local-r2.png&lt;/span&gt;&lt;/div&gt;'">
+          </figure>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ JET CENTER ============ -->
+  <!-- ►►► EDIT #6 — JET CENTER PROJECTS (the side-to-side scroller).
+       Each <article class="slide"> is one project. Copy a whole slide block to
+       add another — the dots, the counter and the timer all update by
+       themselves, no other edits needed.
+       Slide images go in the images/ folder, same as the other figures.
+       To change how long each slide is shown, edit "animation:sweep 7s" in the
+       .jet-timer i rule up in the CSS. -->
+  <section class="band" id="jet">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">JET Center</span></div>
+      <div>
+        <h2>ASU's Just Energy Transition (JET) Center</h2>
+        <p class="jet-intro">Community-centered work on energy transition in Arizona, carried out with the JET Center and its advisory committee. <!-- Edit this line freely — it is a draft. --></p>
+
+        <div class="carousel" data-carousel>
+          <div class="carousel__viewport" data-track tabindex="0" aria-label="JET Center projects">
+
+            <!-- slide 1 -->
+            <article class="slide">
+              <div>
+                <p class="status">Ongoing</p>
+                <h3>Arizona needs a structured energy transition funding mechanism</h3>
+                <p>States such as Colorado, New Mexico, and Minnesota have laid down structured funding mechanisms that give communities facing coal plant closures a pathway to diversify their economies. Arizona has no such pathway, despite four coal plant closures leading up to 2030.</p>
+                <p>The JET Center is working with an advisory committee to build a set of policy recommendations for state policymakers, aimed at establishing Arizona's first dedicated transition funding mechanism. The project also produces a policy report drawing on transitions elsewhere in the U.S. — including outside the energy sector — alongside economic modelling of Northeastern Arizona's transition needs.</p>
+                <ul class="tags">
+                  <li>Energy transitions</li>
+                  <li>Community centered</li>
+                  <li>Economic modeling</li>
+                </ul>
+              </div>
+              <figure class="snapshot">
+                <img src="images/jet-1.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/jet-1.png&lt;/span&gt;&lt;/div&gt;'">
+              </figure>
+            </article>
+
+            <!-- slide 2 — TEMPLATE. Replace the text, or delete this whole
+                 <article> block if you only want one project showing. -->
+            <article class="slide">
+              <div>
+                <p class="status is-violet">Status</p>
+                <h3>Project title</h3>
+                <p>REPLACE THIS: two or three sentences on what the project asks, what you do on it, and what it produces.</p>
+                <ul class="tags">
+                  <li>Tag</li>
+                  <li>Tag</li>
+                </ul>
+              </div>
+              <figure class="snapshot">
+                <img src="images/jet-2.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/jet-2.png&lt;/span&gt;&lt;/div&gt;'">
+              </figure>
+            </article>
+
+          </div>
+
+          <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
+
+          <div class="carousel__controls">
+            <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
+            <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
+            <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
+            <span class="carousel__count" data-count aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CV ============ -->
+  <section class="band" id="cv">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">CV</span></div>
+      <div>
+        <h2>Curriculum vitae</h2>
+        <!-- ►►► EDIT #4 — CV FILE.
+             Upload your PDF to the repo ROOT named cv.pdf and this button works
+             with no further edits. If you name it something else, change the
+             href below to match exactly (case-sensitive). -->
+        <a class="cta" href="RITVIK SHUKLA_CV.pdf" download>Download CV (PDF)</a>
+
+        <p class="label" style="margin-bottom:.9rem">Education</p>
+        <ul class="entries">
+          <li>
+            <span class="yr">2022 – 2027</span>
+            <span>
+              <span class="deg">PhD, Environmental Social Science</span><br>
+              <span class="inst">Arizona State University · School of Human Evolution and Social Change</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">2020 – 2022</span>
+            <span>
+              <span class="deg">MS, Earth and Environmental Resource Management</span><br>
+              <span class="inst">University of South Carolina</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">2015 – 2020</span>
+            <span>
+              <span class="deg">BS, Environmental Sciences and Natural Resources</span><br>
+              <span class="inst">The Ohio State University</span>
+            </span>
+          </li>
+        </ul>
+
+        <!-- Add more blocks the same way, e.g. Awards or Service:
+        <p class="label" style="margin:2.2rem 0 .9rem">Awards</p>
+        <ul class="entries"> ... </ul>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="band" id="contact">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">Contact</span></div>
+      <div>
+        <h2>Get in touch</h2>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:rshukla9@asu.edu">rshukla9@asu.edu</a></li>
+          <li><span class="k">Office</span>900 S. Cady Mall, Tempe, AZ 85281</li>
+          <li><span class="k">Scholar</span><a href="#">Add your Google Scholar link</a></li>
+          <li><span class="k">ORCID</span><a href="#">Add your ORCID link</a></li>
+          <li><span class="k">GitHub</span><a href="#">Add your GitHub link</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="yr">2026</span> Ritvik Shukla · Built with GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---- JET Center carousel -------------------------------------------
+     Auto-advances on a timer, pauses on hover / keyboard focus / hidden tab,
+     and is fully navigable by arrows, dots, swipe, or keyboard.
+     Nothing here needs editing when you add or remove slides. */
+  (function(){
+    var root = document.querySelector('[data-carousel]');
+    if(!root) return;
+
+    var track  = root.querySelector('[data-track]');
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
+    var fill   = root.querySelector('[data-fill]');
+    var dotBox = root.querySelector('[data-dots]');
+    var count  = root.querySelector('[data-count]');
+    if(slides.length < 2){ if(fill) fill.style.display = 'none'; }
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var index = 0;
+
+    slides.forEach(function(slide, n){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dot';
+      b.setAttribute('aria-label', 'Show project ' + (n + 1));
+      b.addEventListener('click', function(){ go(n, true); });
+      dotBox.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotBox.children);
+
+    function offsetOf(n){ return slides[n].offsetLeft - slides[0].offsetLeft; }
+
+    function paint(){
+      dots.forEach(function(d, n){ d.setAttribute('aria-current', n === index ? 'true' : 'false'); });
+      if(count) count.textContent = (index + 1) + ' / ' + slides.length;
+    }
+
+    function restartTimer(){
+      if(!fill || reduced) return;
+      fill.style.animation = 'none';
+      void fill.offsetWidth;          // force reflow so the sweep starts over
+      fill.style.animation = '';
+    }
+
+    function go(n, manual){
+      index = (n + slides.length) % slides.length;
+      track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
+      paint();
+      if(manual) restartTimer();
+    }
+
+    root.querySelector('[data-prev]').addEventListener('click', function(){ go(index - 1, true); });
+    root.querySelector('[data-next]').addEventListener('click', function(){ go(index + 1, true); });
+
+    track.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1, true); }
+      if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1, true); }
+    });
+
+    /* one sweep of the timer bar = one advance */
+    if(fill) fill.addEventListener('animationiteration', function(){ go(index + 1); });
+
+    function pause(){ root.classList.add('is-paused'); }
+    function play(){  root.classList.remove('is-paused'); }
+    root.addEventListener('mouseenter', pause);
+    root.addEventListener('mouseleave', play);
+    root.addEventListener('focusin',  pause);
+    root.addEventListener('focusout', play);
+    document.addEventListener('visibilitychange', function(){
+      document.hidden ? pause() : play();
+    });
+
+    /* keep the dots honest when the reader swipes the track directly */
+    var settle;
+    track.addEventListener('scroll', function(){
+      clearTimeout(settle);
+      settle = setTimeout(function(){
+        var best = 0, min = Infinity;
+        slides.forEach(function(slide, n){
+          var d = Math.abs(offsetOf(n) - track.scrollLeft);
+          if(d < min){ min = d; best = n; }
+        });
+        if(best !== index){ index = best; paint(); restartTimer(); }
+      }, 90);
+    }, { passive:true });
+
+    paint();
+  })();
+</script>
+
+</body>
+</html>
