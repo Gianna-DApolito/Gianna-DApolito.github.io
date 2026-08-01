@@ -460,9 +460,9 @@
            src="..." below to the new filename.
            Spaces in a filename must be written as %20.
            Size and crop are controlled in the CSS: search for "EDIT #1" there. -->
-      <figure class="portrait">
-        <img src="D_apolito_Gianna_987.1835.jpg" alt="Portrait of Gianna D'Apolito" loading="eager" decoding="async">
-      </figure>
+<figure class="portrait">
+  <img src="D_apolito_Gianna_987-1835.jpg" alt="Portrait of Gianna D'Apolito" loading="eager" decoding="async">
+</figure>
     </div>
   </header>
 
@@ -592,151 +592,124 @@
   </section>
 
   <!-- ============ JET CENTER ============ -->
-  <!-- ►►► EDIT #6 — JET CENTER PROJECTS (the side-to-side scroller).
-       Each <article class="slide"> is one project. Copy a whole slide block to
-       add another — the dots, the counter and the timer all update by
-       themselves, no other edits needed.
-       Slide images go in the images/ folder, same as the other figures.
-       To change how long each slide is shown, edit "animation:sweep 7s" in the
-       .jet-timer i rule up in the CSS. -->
-  <section class="band" id="jet">
-    <div class="wrap band__inner">
-      <div class="band__rail"><span class="label">State Public Health</span></div>
-      <div>
-        <h2>Contributions to State Public Health</h2>
-        <p class="jet-intro">Public Health focused work in Genetic Disease Screening. <!-- Edit this line freely — it is a draft. --></p>
+<!-- CONTRIBUTIONS SECTION: replace the whole #jet section with this -->
+<section class="band" id="jet">
+  <div class="wrap band__inner">
+    <div class="band__rail"><span class="label">State Public Health</span></div>
+    <div>
+      <h2>Contributions to State Public Health</h2>
+      <p class="jet-intro">Public health focused work in genetic disease screening.</p>
 
+      <div class="carousel" data-carousel="jet">
+        <div class="carousel__viewport" data-track tabindex="0" aria-label="State Public Health projects">
 
-          <div class="carousel__controls">
-            <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
-            <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
-            <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
-            <span class="carousel__count" data-count aria-live="polite"></span>
-          </div>
+          <article class="slide">
+            <div>
+              <p class="status">Ongoing</p>
+              <h3>Genomic Data Intern</h3>
+              <p>Association of Public Health Laboratories & Centers for Disease Control and Prevention</p>
+              <ul class="tags">
+                <li>Genomic Data</li>
+                <li>State Program Capacity</li>
+                <li>Data Analytics</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="slide">
+            <div>
+              <p class="status is-violet">Ongoing</p>
+              <h3>Newborn Screening Data Analyst</h3>
+              <p>UCLA Human Genetics</p>
+              <ul class="tags">
+                <li>Newborn Screening</li>
+                <li>Quality Improvement</li>
+                <li>Data Analytics</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="slide">
+            <div>
+              <p class="status is-violet">2021–2023</p>
+              <h3>Data Manager</h3>
+              <p>Genetic Disease Screening Program, California Department of Public Health</p>
+              <ul class="tags">
+                <li>Genetic Disease Screening</li>
+                <li>Quality Improvement</li>
+                <li>Data Management</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="slide">
+            <div>
+              <p class="status is-violet">2020–2021</p>
+              <h3>Health Information Technology Coordinator</h3>
+              <p>Newborn Screening Program, South Carolina Department of Public Health</p>
+              <ul class="tags">
+                <li>Newborn Screening</li>
+                <li>Health Information</li>
+                <li>Quality Assurance</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
+
+        <div class="carousel__controls">
+          <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
+          <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
+          <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
+          <span class="carousel__count" data-count aria-live="polite"></span>
         </div>
       </div>
     </div>
-        
-        <div class="carousel" data-carousel>
-          <div class="carousel__viewport" data-track tabindex="0" aria-label="JET Center projects">
+  </div>
+</section>
+  
+  <!-- ============ Highlights ============ -->
+<section class="band" id="highlight">
+  <div class="wrap band__inner">
+    <div class="band__rail"><span class="label">Highlights</span></div>
+    <div>
+      <h2>Recent Highlights</h2>
 
-            <!-- slide 1 -->
-            <article class="slide">
-              <div>
-                <p class="status">Ongoing</p>
-                <h3>Genomic Data Intern</h3>
-                <p> Association of Public Health Laboraties & Centers for Disease Control and Prevention</p>
-                <ul class="tags">
-                  <li>Genomic Data</li>
-                  <li>State Program Capacity </li>
-                  <li>Data Analytics </li>
-                </ul>
-              </div>
+      <div class="carousel" data-carousel="highlights">
+        <div class="carousel__viewport" data-track tabindex="0" aria-label="Recent highlights">
+          <article class="slide">
+            <div>
+              <p class="status">Awarded 2026</p>
+              <h3>Outstanding Research Award</h3>
+              <p>Graduate College, Arizona State University</p>
+              <p>Awarded for dissertation study novelty and impact.</p>
+            </div>
+          </article>
 
-            <article class="slide">
-              <div>
-                <p class="status is-violet">Ongoing</p>
-                <h3>Newborn Screening Data Analyst</h3>
-                <p>UCLA Human Genetics </p>
-                <ul class="tags">
-                  <li>Newborn Screening</li>
-                  <li>Quality Improvement</li>
-                  <li>Data Analytics</li>
-                </ul>
-              </div>
-              <figure class="snapshot">
+          <article class="slide">
+            <div>
+              <p class="status">Awarded 2026</p>
+              <h3>Outstanding Mentor Award</h3>
+              <p>Graduate College, Arizona State University</p>
+              <p>Awarded for mentorship as President of the Exercise and Nutrition Sciences Club and work as a Community Advocate.</p>
+            </div>
+          </article>
+        </div>
 
-              <article class="slide">
-              <div>
-                <p class="status is-violet">2021-2023</p>
-                <h3>Data Manager</h3>
-                <p>Genetic Disease Screening Program, California Department of Public Health</p>
-                <ul class="tags">
-                  <li>Genetic Disease Screening</li>
-                  <li>Quality Improvement</li>
-                  <li>Data Management</li>
-                </ul>
-              </div>
-              <figure class="snapshot">
+        <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
 
-                
-              <article class="slide">
-              <div>
-                <p class="status is-violet">2020-2021</p>
-                <h3>Health Information Technology Coordinator</h3>
-                <p>Newborn Screening Program, South Carolina Department of Public Health</p>
-                <ul class="tags">
-                  <li>Newborn Screening Screening</li>
-                  <li>Health Information</li>
-                  <li>Quality Assurance, Quality Improvement</li>
-                </ul>
-              </div>
-              <figure class="snapshot">
-
-          </div>
-
-          <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
-
-          <div class="carousel__controls">
-            <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
-            <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
-            <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
-            <span class="carousel__count" data-count aria-live="polite"></span>
-          </div>
+        <div class="carousel__controls">
+          <button class="cbtn" type="button" data-prev aria-label="Previous highlight">&#8592;</button>
+          <button class="cbtn" type="button" data-next aria-label="Next highlight">&#8594;</button>
+          <div class="dots" data-dots role="tablist" aria-label="Choose highlight"></div>
+          <span class="carousel__count" data-count aria-live="polite"></span>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="band" id="highlight">
-    <div class="wrap band__inner">
-      <div class="band__rail"><span class="label">Highlights</span></div>
-      <div>
-        <h2>Recent Highlights</h2
-
-        <div class="carousel" data-carousel>
-          <div class="carousel__viewport" data-track tabindex="0" aria-label="JET Center projects">
-
-            <!-- slide 1 -->
-            <article class="slide">
-              <div>
-                <p class="status">Awarded 2026</p>
-                <h3>Outstanding Research Award</h3>
-                <p> Graduate College, Arizona State University</p>
-                <p> Awarded for dissertation study novelty and impact </p>
-                </ul>
-              </div>
-              <figure class="snapshot">
-                <img src="images/jet-1.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/jet-1.png&lt;/span&gt;&lt;/div&gt;'">
-              </figure>
-            </article>
-            
-            <article class="slide">
-              <div>
-                <p class="status">Awarded 2026</p>
-                <h3>Outstanding Mentor Award</h3>
-                <p> Graduate College, Arizona State University</p>
-                <p> Awarded for mentorship as the President of the Exercise and Nutrition Sciences Club & work as a Community Advocate</p>
-                </ul>
-              </div>
-              <figure class="snapshot">
-                <img src="images/jet-1.png" alt="" onerror="this.outerHTML='&lt;div class=&quot;snapshot__empty&quot;&gt;&lt;span&gt;Drop a figure at images/jet-1.png&lt;/span&gt;&lt;/div&gt;'">
-              </figure>
-            </article>
-          </div>
-
-          <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
-
-          <div class="carousel__controls">
-            <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
-            <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
-            <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
-            <span class="carousel__count" data-count aria-live="polite"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
 
   <!-- ============ CV ============ -->
@@ -793,8 +766,8 @@
         <ul class="contact-list">
           <li><span class="k">Email</span><a href="mailto:rshukla9@asu.edu">gdapolit@asu.edu</a></li>
           <li><span class="k">Office</span>550 N 3rd St Suite 501, Phoenix, AZ 85281</li>
-          <li><span class="k">LinkedIn</span><a href="www.linkedin.com/in/gianna-dap">www.linkedin.com/in/gianna-dap</a></li>
-          <li><span class="k">ORCID</span><a href="https://orcid.org/0009-0002-0366-0154">https://orcid.org/0009-0002-0366-0154</a></li>
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gianna-dap" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/gianna-dap</a></li>
+          <li><span class="k">ORCID</span><a href="https://orcid.org/0009-0002-0366-0154" target="_blank" rel="noopener noreferrer">orcid.org/0009-0002-0366-0154</a></li>
         </ul>
       </div>
     </div>
