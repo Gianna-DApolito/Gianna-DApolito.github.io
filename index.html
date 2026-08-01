@@ -446,7 +446,7 @@
       <div class="hero__text">
         <p class="label">PhD Candidate · College of Health Solutions · Population Health </p>
         <h1>Gianna<br>D'Apolito</h1>
-        <p class="hero__lede">Maternal and child health researcher <em> Focusing on Newborn Screening and Genomic Sequencing </em> with a special interest in Health Policy, Bioethics, Economic Analysis, and Health Communication </p>
+        <p class="hero__lede">Maternal and child health researcher <em> Focusing on Health Policy, Bioethics, Economic Analysis, and Health Communication </em> with a special interest in Newborn Screening and Genomic Sequencing </p>
         <div class="hero__meta label">
           <span>Phoenix, Arizona</span>
           <span>PhD expected May 2027</span>
@@ -591,8 +591,7 @@
     </div>
   </section>
 
-  <!-- ============ JET CENTER ============ -->
-<!-- CONTRIBUTIONS SECTION: replace the whole #jet section with this -->
+<!-- ============ JET CENTER ============ -->
 <section class="band" id="jet">
   <div class="wrap band__inner">
     <div class="band__rail"><span class="label">State Public Health</span></div>
@@ -601,13 +600,12 @@
       <p class="jet-intro">Public health focused work in genetic disease screening.</p>
 
       <div class="carousel" data-carousel="jet">
-        <div class="carousel__viewport" data-track tabindex="0" aria-label="State Public Health projects">
-
+        <div class="carousel__viewport" data-track tabindex="0" aria-label="Contributions to State Public Health">
           <article class="slide">
             <div>
               <p class="status">Ongoing</p>
               <h3>Genomic Data Intern</h3>
-              <p>Association of Public Health Laboratories & Centers for Disease Control and Prevention</p>
+              <p>Association of Public Health Laboratories &amp; Centers for Disease Control and Prevention</p>
               <ul class="tags">
                 <li>Genomic Data</li>
                 <li>State Program Capacity</li>
@@ -654,7 +652,6 @@
               </ul>
             </div>
           </article>
-
         </div>
 
         <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
@@ -669,8 +666,8 @@
     </div>
   </div>
 </section>
-  
-  <!-- ============ Highlights ============ -->
+
+<!-- ============ HIGHLIGHTS ============ -->
 <section class="band" id="highlight">
   <div class="wrap band__inner">
     <div class="band__rail"><span class="label">Highlights</span></div>
@@ -678,7 +675,19 @@
       <h2>Recent Highlights</h2>
 
       <div class="carousel" data-carousel="highlights">
-        <div class="carousel__viewport" data-track tabindex="0" aria-label="Recent highlights">
+        <div class="carousel__viewport" data-track tabindex="0" aria-label="Recent Highlights">
+
+              <article class="slide">
+            <div>
+              <p class="status">Published 2026</p>
+              <h3>
+                  <a href="https://link.springer.com/article/10.1186/s12913-026-15017-9" target="_blank" rel="noopener">
+                Structural readiness of CBOs to address health-related social needs in chronic disease management programs</h3>
+              <p>Published in  BMC Health Services Research</p>
+              <p>This article focuses on the wide variation in the capacity to assess and address health-related social needs (HRSN). We developed a capacity continuum that illustrates how internal organizational factors and external conditions interact to shape the reach and effectiveness of community-based organizations.</p>
+            </div>
+          </article>
+          
           <article class="slide">
             <div>
               <p class="status">Awarded 2026</p>
@@ -782,51 +791,59 @@
 </footer>
 
 <script>
+  
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   function setupCarousel(root) {
     if (!root) return;
 
-    var track  = root.querySelector('[data-track]');
+    var track = root.querySelector('[data-track]');
     var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
-    var fill   = root.querySelector('[data-fill]');
+    var fill = root.querySelector('[data-fill]');
     var dotBox = root.querySelector('[data-dots]');
-    var count  = root.querySelector('[data-count]');
+    var count = root.querySelector('[data-count]');
+
     if (slides.length < 2) {
       if (fill) fill.style.display = 'none';
+      if (dotBox) dotBox.style.display = 'none';
+      if (count) count.textContent = '';
       return;
     }
 
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var index = 0;
 
-    slides.forEach(function(slide, n){
+    slides.forEach(function (slide, n) {
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'dot';
       b.setAttribute('aria-label', 'Show item ' + (n + 1));
-      b.addEventListener('click', function(){ go(n, true); });
+      b.addEventListener('click', function () { go(n, true); });
       dotBox.appendChild(b);
     });
 
     var dots = Array.prototype.slice.call(dotBox.children);
 
-    function offsetOf(n){ return slides[n].offsetLeft - slides[0].offsetLeft; }
+    function offsetOf(n) {
+      return slides[n].offsetLeft - slides[0].offsetLeft;
+    }
 
-    function paint(){
-      dots.forEach(function(d, n){ d.setAttribute('aria-current', n === index ? 'true' : 'false'); });
+    function paint() {
+      dots.forEach(function (d, n) {
+        d.setAttribute('aria-current', n === index ? 'true' : 'false');
+      });
       if (count) count.textContent = (index + 1) + ' / ' + slides.length;
     }
 
-    function restartTimer(){
+    function restartTimer() {
       if (!fill || reduced) return;
       fill.style.animation = 'none';
       void fill.offsetWidth;
       fill.style.animation = '';
     }
 
-    function go(n, manual){
+    function go(n, manual) {
       index = (n + slides.length) % slides.length;
       track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
       paint();
@@ -835,33 +852,37 @@
 
     var prev = root.querySelector('[data-prev]');
     var next = root.querySelector('[data-next]');
-    if (prev) prev.addEventListener('click', function(){ go(index - 1, true); });
-    if (next) next.addEventListener('click', function(){ go(index + 1, true); });
+    if (prev) prev.addEventListener('click', function () { go(index - 1, true); });
+    if (next) next.addEventListener('click', function () { go(index + 1, true); });
 
-    track.addEventListener('keydown', function(e){
+    track.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1, true); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); go(index - 1, true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1, true); }
     });
 
-    if (fill) fill.addEventListener('animationiteration', function(){ go(index + 1); });
+    if (fill) {
+      fill.addEventListener('animationiteration', function () {
+        go(index + 1);
+      });
+    }
 
-    function pause(){ root.classList.add('is-paused'); }
-    function play(){  root.classList.remove('is-paused'); }
+    function pause() { root.classList.add('is-paused'); }
+    function play() { root.classList.remove('is-paused'); }
 
     root.addEventListener('mouseenter', pause);
     root.addEventListener('mouseleave', play);
     root.addEventListener('focusin', pause);
     root.addEventListener('focusout', play);
-    document.addEventListener('visibilitychange', function(){
+    document.addEventListener('visibilitychange', function () {
       document.hidden ? pause() : play();
     });
 
     var settle;
-    track.addEventListener('scroll', function(){
+    track.addEventListener('scroll', function () {
       clearTimeout(settle);
-      settle = setTimeout(function(){
+      settle = setTimeout(function () {
         var best = 0, min = Infinity;
-        slides.forEach(function(slide, n){
+        slides.forEach(function (slide, n) {
           var d = Math.abs(offsetOf(n) - track.scrollLeft);
           if (d < min) { min = d; best = n; }
         });
@@ -871,7 +892,7 @@
           restartTimer();
         }
       }, 90);
-    }, { passive:true });
+    }, { passive: true });
 
     paint();
   }
