@@ -601,6 +601,8 @@
 
       <div class="carousel" data-carousel="jet">
         <div class="carousel__viewport" data-track tabindex="0" aria-label="Contributions to State Public Health">
+         
+          
           <article class="slide">
             <div>
               <p class="status">Ongoing</p>
@@ -794,111 +796,93 @@
 
 <script>
 
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
+ /* ---- JET Center carousel -------------------------------------------
+     Auto-advances on a timer, pauses on hover / keyboard focus / hidden tab,
+     and is fully navigable by arrows, dots, swipe, or keyboard.
+     Nothing here needs editing when you add or remove slides. */
+  (function(){
+    var root = document.querySelector('[data-carousel]');
+    if(!root) return;
 
-  function setupCarousel(root) {
-    if (!root) return;
-
-    var track = root.querySelector('[data-track]');
+    var track  = root.querySelector('[data-track]');
     var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
-    var fill = root.querySelector('[data-fill]');
+    var fill   = root.querySelector('[data-fill]');
     var dotBox = root.querySelector('[data-dots]');
-    var count = root.querySelector('[data-count]');
-
-    if (slides.length < 2) {
-      if (fill) fill.style.display = 'none';
-      if (dotBox) dotBox.style.display = 'none';
-      if (count) count.textContent = '';
-      return;
-    }
+    var count  = root.querySelector('[data-count]');
+    if(slides.length < 2){ if(fill) fill.style.display = 'none'; }
 
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var index = 0;
 
-    slides.forEach(function (slide, n) {
+    slides.forEach(function(slide, n){
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'dot';
-      b.setAttribute('aria-label', 'Show item ' + (n + 1));
-      b.addEventListener('click', function () { go(n, true); });
+      b.setAttribute('aria-label', 'Show project ' + (n + 1));
+      b.addEventListener('click', function(){ go(n, true); });
       dotBox.appendChild(b);
     });
-
     var dots = Array.prototype.slice.call(dotBox.children);
 
-    function offsetOf(n) {
-      return slides[n].offsetLeft - slides[0].offsetLeft;
+    function offsetOf(n){ return slides[n].offsetLeft - slides[0].offsetLeft; }
+
+    function paint(){
+      dots.forEach(function(d, n){ d.setAttribute('aria-current', n === index ? 'true' : 'false'); });
+      if(count) count.textContent = (index + 1) + ' / ' + slides.length;
     }
 
-    function paint() {
-      dots.forEach(function (d, n) {
-        d.setAttribute('aria-current', n === index ? 'true' : 'false');
-      });
-      if (count) count.textContent = (index + 1) + ' / ' + slides.length;
-    }
-
-    function restartTimer() {
-      if (!fill || reduced) return;
+    function restartTimer(){
+      if(!fill || reduced) return;
       fill.style.animation = 'none';
-      void fill.offsetWidth;
+      void fill.offsetWidth;          // force reflow so the sweep starts over
       fill.style.animation = '';
     }
 
-    function go(n, manual) {
+    function go(n, manual){
       index = (n + slides.length) % slides.length;
       track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
       paint();
-      if (manual) restartTimer();
+      if(manual) restartTimer();
     }
 
-    var prev = root.querySelector('[data-prev]');
-    var next = root.querySelector('[data-next]');
-    if (prev) prev.addEventListener('click', function () { go(index - 1, true); });
-    if (next) next.addEventListener('click', function () { go(index + 1, true); });
+    root.querySelector('[data-prev]').addEventListener('click', function(){ go(index - 1, true); });
+    root.querySelector('[data-next]').addEventListener('click', function(){ go(index + 1, true); });
 
-    track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1, true); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1, true); }
+    track.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1, true); }
+      if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1, true); }
     });
 
-    if (fill) {
-      fill.addEventListener('animationiteration', function () {
-        go(index + 1);
-      });
-    }
+    /* one sweep of the timer bar = one advance */
+    if(fill) fill.addEventListener('animationiteration', function(){ go(index + 1); });
 
-    function pause() { root.classList.add('is-paused'); }
-    function play() { root.classList.remove('is-paused'); }
-
+    function pause(){ root.classList.add('is-paused'); }
+    function play(){  root.classList.remove('is-paused'); }
     root.addEventListener('mouseenter', pause);
     root.addEventListener('mouseleave', play);
-    root.addEventListener('focusin', pause);
+    root.addEventListener('focusin',  pause);
     root.addEventListener('focusout', play);
-    document.addEventListener('visibilitychange', function () {
+    document.addEventListener('visibilitychange', function(){
       document.hidden ? pause() : play();
     });
 
+    /* keep the dots honest when the reader swipes the track directly */
     var settle;
-    track.addEventListener('scroll', function () {
+    track.addEventListener('scroll', function(){
       clearTimeout(settle);
-      settle = setTimeout(function () {
+      settle = setTimeout(function(){
         var best = 0, min = Infinity;
-        slides.forEach(function (slide, n) {
+        slides.forEach(function(slide, n){
           var d = Math.abs(offsetOf(n) - track.scrollLeft);
-          if (d < min) { min = d; best = n; }
+          if(d < min){ min = d; best = n; }
         });
-        if (best !== index) {
-          index = best;
-          paint();
-          restartTimer();
-        }
+        if(best !== index){ index = best; paint(); restartTimer(); }
       }, 90);
-    }, { passive: true });
+    }, { passive:true });
 
     paint();
-  }
-
-  setupCarousel(document.querySelector('[data-carousel="jet"]'));
-  setupCarousel(document.querySelector('[data-carousel="highlights"]'));
+  })();
 </script>
+
+</body>
+</html>
