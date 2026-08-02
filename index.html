@@ -282,7 +282,7 @@
     color:var(--graphite); max-width:24ch;
   }
 
-  /* ---------- JET Center carousel ---------- */
+  /* ---------- carousels ---------- */
   .jet-intro{ margin-bottom:2rem; }
 
   .carousel{ position:relative; }
@@ -314,6 +314,9 @@
     font-family:var(--mono); font-size:.68rem; letter-spacing:.1em;
     text-transform:uppercase; color:var(--graphite);
   }
+  .slide h3 a{ text-decoration:none; border-bottom:1px solid var(--rule); }
+  .slide h3 a:hover,
+  .slide h3 a:focus-visible{ border-bottom-color:var(--lilac); }
 
   /* timer bar — one sweep = one auto-advance */
   .jet-timer{
@@ -460,9 +463,9 @@
            src="..." below to the new filename.
            Spaces in a filename must be written as %20.
            Size and crop are controlled in the CSS: search for "EDIT #1" there. -->
-<figure class="portrait">
-  <img src="D_apolito_Gianna_987-1835.jpg" alt="Portrait of Gianna D'Apolito" loading="eager" decoding="async">
-</figure>
+      <figure class="portrait">
+        <img src="D_apolito_Gianna_987-1835.jpg" alt="Portrait of Gianna D'Apolito" loading="eager" decoding="async">
+      </figure>
     </div>
   </header>
 
@@ -471,7 +474,7 @@
     <div class="wrap band__inner">
       <div class="band__rail"><span class="label">Research</span></div>
       <div>
-        <h2>Ethics, Policy & Social Implications of Health Screening</h2>
+        <h2>Ethics, Policy &amp; Social Implications of Health Screening</h2>
         <p>I am an systems scientist focused on the ethical, legal, social, and financial impacts of preventative screening. My current work focuses on newborn screening and patient trust, with a specialized focus in genomic sequencing potential.</p>
         <p>My dissertation, <em style="font-style:italic">"Newborn Screening Declination: Policies, Programs and Parents"</em>, asks how policies, programmatic capacity, and parental perspectives play a role in parental decision-making to have their child screened, as well as state's responsibilty to screen. I am on the academic job market for positions beginning in 2027.</p>
       </div>
@@ -487,14 +490,17 @@
         <!-- ►►► EDIT #5 — WORK IN PROGRESS ENTRIES.
              Each <article class="card"> is one project. To add another, copy a
              whole <article>...</article> block and edit the text inside.
+             IMPORTANT: every <article> must end with its own </article> tag,
+             otherwise the cards nest inside each other and the layout breaks.
              The dot colour comes from the <p class="status"> line:
                class="status"            → light blue dot
                class="status is-violet"  → light purple dot
              A card with no figure yet: delete its <figure> block entirely. -->
-      <article class="card card--figure-wide">
+
+        <article class="card card--figure-wide">
           <div>
             <p class="status">Manuscript in preparation</p>
-            <h3>Understanding increasing Refusal Rates in California through Data Dashboards </h3>
+            <h3>Understanding increasing Refusal Rates in California through Data Dashboards</h3>
             <p>Utilized a decade of state data to inform practices that maintain strong newborn screening participation in state programs </p>
             <p>A study of newborn screening refusal rates comparing current trends with accessible variables such as rurality and provider type. </p>
             <ul class="tags">
@@ -503,35 +509,38 @@
               <li>Quantitative Analysis</li>
             </ul>
           </div>
-        
-              <article class="card card--figure-wide">
+        </article>
+
+        <article class="card card--figure-wide">
           <div>
             <p class="status">Manuscript in preparation</p>
-            <h3> Prediction Model of Newborn Screening Refusal Rates in California </h3>
-            <p> Part of a team that created a prediction model to understand factors, such as insurance type, payor availability, maternal age, and parity, that can predict whether a newborn screening refusal will occur.</p>
+            <h3>Prediction Model of Newborn Screening Refusal Rates in California</h3>
+            <p>Part of a team that created a prediction model to understand factors, such as insurance type, payor availability, maternal age, and parity, that can predict whether a newborn screening refusal will occur.</p>
             <ul class="tags">
               <li>Newborn Screening</li>
               <li>Prediction Modeling</li>
               <li>Complex Quantitative Analysis</li>
             </ul>
           </div>
+        </article>
 
-                      <article class="card card--figure-wide">
+        <article class="card card--figure-wide">
           <div>
             <p class="status">Manuscript in preparation</p>
-            <h3> Legal Mapping of Maternal Mental Health Laws in the United States. </h3>
-            <p> Part of a team that mapped state laws regarding maternal mental health from 2016 -2018 </p>
+            <h3>Legal Mapping of Maternal Mental Health Laws in the United States</h3>
+            <p>Part of a team that mapped state laws regarding maternal mental health from 2016–2018 </p>
             <ul class="tags">
               <li>Maternal Mental Health</li>
               <li>Legal Epidemiology</li>
               <li>Policy analysis</li>
             </ul>
           </div>
+        </article>
 
         <article class="card card--figure-wide">
           <div>
             <p class="status">Manuscript in preparation</p>
-            <h3>Legal Mapping Policy Analysis: Newborn Screening Objections in the United States </h3>
+            <h3>Legal Mapping Policy Analysis: Newborn Screening Objections in the United States</h3>
             <p>Newborn Screening policies in the United States appear to rising for the first time in decades. My study attemtps to understand the language within state policies that mandate parents to refuse this public health measure for their child. </p>
             <p>Mapping the state-level governance of newborn screening policies regarding when parents can refuse screening for their child, as well as external factors such as education, cost of screening, and bloodspot destruction policies.</p>
             <ul class="tags">
@@ -540,17 +549,14 @@
               <li>Policy analysis</li>
             </ul>
           </div>
-          <!-- ►►► EDIT #2 — EVCI NETWORK FIGURE.
-               Upload your image to the "images" folder in the repo, named
-               evci-network.png (or change the src below to match your filename).
-               Until a file exists there, a dashed placeholder box shows instead. -->
+        </article>
 
         <article class="card card--figure-wide">
           <div>
-            <p class="status is-violet">Research in progress </p>
-            <h3> Development Digital Health Tool for Patients Managing Chronic Disease </h3>
-            <p> Understanding patient perspectives regarding health communication in relation to social needs and chronic disease management</p>
-            <p> This team is creating a patient-informed and community-driven digital health tool. </p>
+            <p class="status is-violet">Research in progress</p>
+            <h3>Development Digital Health Tool for Patients Managing Chronic Disease</h3>
+            <p>Understanding patient perspectives regarding health communication in relation to social needs and chronic disease management</p>
+            <p>This team is creating a patient-informed and community-driven digital health tool. </p>
             <ul class="tags">
               <li>Health Messaging</li>
               <li>Health Related Social Needs</li>
@@ -558,172 +564,172 @@
               <li>Mixed Methods </li>
             </ul>
           </div>
+        </article>
 
-           
         <article class="card card--figure-wide">
           <div>
-            <p class="status is-violet">Research in progress </p>
+            <p class="status is-violet">Research in progress</p>
             <h3>Newborn Screening Program Perspectives of the United State's Decreasing Trust in Newborn Screening</h3>
-            <p> Quantitative data were collected from state Newborn Screening Programs to investigate whether parent refusal rates have increased and provide historical data when possible.  </p>
-            <p> Qualitative interviews and focus groups were conducted with state Newborn Screening Programs to understand their nuanced perspective of the state responsibility as well as parental autonomy when a parent choices to refuse.</p>
+            <p>Quantitative data were collected from state Newborn Screening Programs to investigate whether parent refusal rates have increased and provide historical data when possible. </p>
+            <p>Qualitative interviews and focus groups were conducted with state Newborn Screening Programs to understand their nuanced perspective of the state responsibility as well as parental autonomy when a parent choices to refuse.</p>
             <ul class="tags">
               <li>Newborn Screening</li>
               <li>Programmatic Capacity</li>
               <li>Mixed Methods</li>
             </ul>
           </div>
-
+        </article>
 
         <article class="card card--figure-wide">
           <div>
-            <p class="status is-violet">Research in progress </p>
-            <h3> Parental Perspectives of Parents who have Accepted and Declined Newborn Screening </h3>
-            <p> A mixed methods survey describing parents' health-information seeking behavior - specifically investigating information sources, trustworthiness, and state program factors (such as bloodspot destruction) that informed parental choice.  </p>
+            <p class="status is-violet">Research in progress</p>
+            <h3>Parental Perspectives of Parents who have Accepted and Declined Newborn Screening</h3>
+            <p>A mixed methods survey describing parents' health-information seeking behavior — specifically investigating information sources, trustworthiness, and state program factors (such as bloodspot destruction) that informed parental choice. </p>
             <ul class="tags">
               <li>Newborn Screening</li>
               <li>Parental Perspectives</li>
               <li>Mixed Methods</li>
             </ul>
           </div>
-      
+        </article>
 
       </div>
     </div>
   </section>
 
-<!-- ============ JET CENTER ============ -->
-<section class="band" id="jet">
-  <div class="wrap band__inner">
-    <div class="band__rail"><span class="label">State Public Health</span></div>
-    <div>
-      <h2>Contributions to State Public Health</h2>
-      <p class="jet-intro">Public health focused work in genetic disease screening.</p>
+  <!-- ============ STATE PUBLIC HEALTH ============ -->
+  <section class="band" id="jet">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">State Public Health</span></div>
+      <div>
+        <h2>Contributions to State Public Health</h2>
+        <p class="jet-intro">Public health focused work in genetic disease screening.</p>
 
-      <div class="carousel" data-carousel="jet">
-        <div class="carousel__viewport" data-track tabindex="0" aria-label="Contributions to State Public Health">
-         
-          
-          <article class="slide">
-            <div>
-              <p class="status">Ongoing</p>
-              <h3>Genomic Data Intern</h3>
-              <p>Association of Public Health Laboratories &amp; Centers for Disease Control and Prevention</p>
-              <ul class="tags">
-                <li>Genomic Data</li>
-                <li>State Program Capacity</li>
-                <li>Data Analytics</li>
-              </ul>
-            </div>
-          </article>
+        <div class="carousel" data-carousel="jet">
+          <div class="carousel__viewport" data-track tabindex="0" aria-label="Contributions to State Public Health">
 
-          <article class="slide">
-            <div>
-              <p class="status is-violet">Ongoing</p>
-              <h3>Newborn Screening Data Analyst</h3>
-              <p>UCLA Human Genetics</p>
-              <ul class="tags">
-                <li>Newborn Screening</li>
-                <li>Quality Improvement</li>
-                <li>Data Analytics</li>
-              </ul>
-            </div>
-          </article>
+            <article class="slide">
+              <div>
+                <p class="status">Ongoing</p>
+                <h3>Genomic Data Intern</h3>
+                <p>Association of Public Health Laboratories &amp; Centers for Disease Control and Prevention</p>
+                <ul class="tags">
+                  <li>Genomic Data</li>
+                  <li>State Program Capacity</li>
+                  <li>Data Analytics</li>
+                </ul>
+              </div>
+            </article>
 
-          <article class="slide">
-            <div>
-              <p class="status is-violet">2021–2023</p>
-              <h3>Data Manager</h3>
-              <p>Genetic Disease Screening Program, California Department of Public Health</p>
-              <ul class="tags">
-                <li>Genetic Disease Screening</li>
-                <li>Quality Improvement</li>
-                <li>Data Management</li>
-              </ul>
-            </div>
-          </article>
+            <article class="slide">
+              <div>
+                <p class="status is-violet">Ongoing</p>
+                <h3>Newborn Screening Data Analyst</h3>
+                <p>UCLA Human Genetics</p>
+                <ul class="tags">
+                  <li>Newborn Screening</li>
+                  <li>Quality Improvement</li>
+                  <li>Data Analytics</li>
+                </ul>
+              </div>
+            </article>
 
-          <article class="slide">
-            <div>
-              <p class="status is-violet">2020–2021</p>
-              <h3>Health Information Technology Coordinator</h3>
-              <p>Newborn Screening Program, South Carolina Department of Public Health</p>
-              <ul class="tags">
-                <li>Newborn Screening</li>
-                <li>Health Information</li>
-                <li>Quality Assurance</li>
-              </ul>
-            </div>
-          </article>
-        </div>
+            <article class="slide">
+              <div>
+                <p class="status is-violet">2021–2023</p>
+                <h3>Data Manager</h3>
+                <p>Genetic Disease Screening Program, California Department of Public Health</p>
+                <ul class="tags">
+                  <li>Genetic Disease Screening</li>
+                  <li>Quality Improvement</li>
+                  <li>Data Management</li>
+                </ul>
+              </div>
+            </article>
 
-        <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
+            <article class="slide">
+              <div>
+                <p class="status is-violet">2020–2021</p>
+                <h3>Health Information Technology Coordinator</h3>
+                <p>Newborn Screening Program, South Carolina Department of Public Health</p>
+                <ul class="tags">
+                  <li>Newborn Screening</li>
+                  <li>Health Information</li>
+                  <li>Quality Assurance</li>
+                </ul>
+              </div>
+            </article>
 
-        <div class="carousel__controls">
-          <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
-          <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
-          <div class="dots" data-dots role="tablist" aria-label="Choose project"></div>
-          <span class="carousel__count" data-count aria-live="polite"></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+          </div>
 
-<!-- ============ HIGHLIGHTS ============ -->
-<section class="band" id="highlight">
-  <div class="wrap band__inner">
-    <div class="band__rail"><span class="label">Highlights</span></div>
-    <div>
-      <h2>Recent Highlights</h2>
+          <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
 
-      <div class="carousel" data-carousel="highlights">
-        <div class="carousel__viewport" data-track tabindex="0" aria-label="Recent Highlights">
-
-<article class="slide">
-  <div>
-    <p class="status">Published 2026</p>
-    <h3>
-      <a href="https://link.springer.com/article/10.1186/s12913-026-15017-9" target="_blank" rel="noopener noreferrer">
-        Structural readiness of CBOs to address health-related social needs in chronic disease management programs
-      </a>
-    </h3>
-    <p>Published in BMC Health Services Research</p>
-    <p>This article focuses on the wide variation in the capacity to assess and address health-related social needs (HRSN). We developed a capacity continuum that illustrates how internal organizational factors and external conditions interact to shape the reach and effectiveness of community-based organizations.</p>
-  </div>
-</article>
-          
-          <article class="slide">
-            <div>
-              <p class="status">Awarded 2026</p>
-              <h3>Outstanding Research Award</h3>
-              <p>Graduate College, Arizona State University</p>
-              <p>Awarded for dissertation study novelty and impact.</p>
-            </div>
-          </article>
-
-          <article class="slide">
-            <div>
-              <p class="status">Awarded 2026</p>
-              <h3>Outstanding Mentor Award</h3>
-              <p>Graduate College, Arizona State University</p>
-              <p>Awarded for mentorship as President of the Exercise and Nutrition Sciences Club and work as a Community Advocate.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
-
-        <div class="carousel__controls">
-          <button class="cbtn" type="button" data-prev aria-label="Previous highlight">&#8592;</button>
-          <button class="cbtn" type="button" data-next aria-label="Next highlight">&#8594;</button>
-          <div class="dots" data-dots role="tablist" aria-label="Choose highlight"></div>
-          <span class="carousel__count" data-count aria-live="polite"></span>
+          <div class="carousel__controls">
+            <button class="cbtn" type="button" data-prev aria-label="Previous project">&#8592;</button>
+            <button class="cbtn" type="button" data-next aria-label="Next project">&#8594;</button>
+            <div class="dots" data-dots aria-label="Choose project"></div>
+            <span class="carousel__count" data-count aria-live="polite"></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ============ HIGHLIGHTS ============ -->
+  <section class="band" id="highlight">
+    <div class="wrap band__inner">
+      <div class="band__rail"><span class="label">Highlights</span></div>
+      <div>
+        <h2>Recent Highlights</h2>
+
+        <div class="carousel" data-carousel="highlights">
+          <div class="carousel__viewport" data-track tabindex="0" aria-label="Recent Highlights">
+
+            <article class="slide">
+              <div>
+                <p class="status">Published 2026</p>
+                <h3>
+                  <a href="https://link.springer.com/article/10.1186/s12913-026-15017-9" target="_blank" rel="noopener noreferrer">
+                    Structural readiness of CBOs to address health-related social needs in chronic disease management programs
+                  </a>
+                </h3>
+                <p>Published in BMC Health Services Research</p>
+                <p>This article focuses on the wide variation in the capacity to assess and address health-related social needs (HRSN). We developed a capacity continuum that illustrates how internal organizational factors and external conditions interact to shape the reach and effectiveness of community-based organizations.</p>
+              </div>
+            </article>
+
+            <article class="slide">
+              <div>
+                <p class="status">Awarded 2026</p>
+                <h3>Outstanding Research Award</h3>
+                <p>Graduate College, Arizona State University</p>
+                <p>Awarded for dissertation study novelty and impact.</p>
+              </div>
+            </article>
+
+            <article class="slide">
+              <div>
+                <p class="status">Awarded 2026</p>
+                <h3>Outstanding Mentor Award</h3>
+                <p>Graduate College, Arizona State University</p>
+                <p>Awarded for mentorship as President of the Exercise and Nutrition Sciences Club and work as a Community Advocate.</p>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="jet-timer" aria-hidden="true"><i data-fill></i></div>
+
+          <div class="carousel__controls">
+            <button class="cbtn" type="button" data-prev aria-label="Previous highlight">&#8592;</button>
+            <button class="cbtn" type="button" data-next aria-label="Next highlight">&#8594;</button>
+            <div class="dots" data-dots aria-label="Choose highlight"></div>
+            <span class="carousel__count" data-count aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============ CV ============ -->
   <section class="band" id="cv">
@@ -732,10 +738,10 @@
       <div>
         <h2>Curriculum vitae</h2>
         <!-- ►►► EDIT #4 — CV FILE.
-             Upload your PDF to the repo ROOT named cv.pdf and this button works
-             with no further edits. If you name it something else, change the
-             href below to match exactly (case-sensitive). -->
-        <a class="cta" href="D'Apolito_CV.pdf" download>Download CV (PDF)</a>
+             Upload your PDF to the repo ROOT. The filename below must match
+             exactly (case-sensitive). Apostrophes and spaces are safest when
+             written as %27 and %20. -->
+        <a class="cta" href="D%27Apolito_CV.pdf" download>Download CV (PDF)</a>
 
         <p class="label" style="margin-bottom:.9rem">Education</p>
         <ul class="entries">
@@ -777,9 +783,13 @@
       <div>
         <h2>Get in touch</h2>
         <ul class="contact-list">
-          <li><span class="k">Email</span><a href="mailto:rshukla9@asu.edu">gdapolit@asu.edu</a></li>
+          <li><span class="k">Email</span><a href="mailto:gdapolit@asu.edu">gdapolit@asu.edu</a></li>
           <li><span class="k">Office</span>550 N 3rd St Suite 501, Phoenix, AZ 85281</li>
-          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gianna-dap" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/gianna-dap</a></li>
+          <!-- ►►► LINKEDIN — paste the exact URL from the address bar of your
+               own profile page (it is the "Copy link to profile" value, and it
+               sometimes ends in a string of letters and numbers). Put the same
+               text in both the href and between the tags. -->
+          <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/gianna-dap/" target="_blank" rel="noopener noreferrer">linkedin.com/in/gianna-dap</a></li>
           <li><span class="k">ORCID</span><a href="https://orcid.org/0009-0002-0366-0154" target="_blank" rel="noopener noreferrer">orcid.org/0009-0002-0366-0154</a></li>
         </ul>
       </div>
@@ -795,92 +805,122 @@
 </footer>
 
 <script>
-
- /* ---- JET Center carousel -------------------------------------------
-     Auto-advances on a timer, pauses on hover / keyboard focus / hidden tab,
-     and is fully navigable by arrows, dots, swipe, or keyboard.
-     Nothing here needs editing when you add or remove slides. */
+  /* ---- Carousels -------------------------------------------------------
+     Every element with data-carousel gets its own independent instance:
+     auto-advance on a timer, pause on hover / keyboard focus / hidden tab,
+     and navigation by arrows, dots, swipe, or keyboard.
+     Nothing here needs editing when you add or remove slides or carousels. */
   (function(){
-    var root = document.querySelector('[data-carousel]');
-    if(!root) return;
-
-    var track  = root.querySelector('[data-track]');
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
-    var fill   = root.querySelector('[data-fill]');
-    var dotBox = root.querySelector('[data-dots]');
-    var count  = root.querySelector('[data-count]');
-    if(slides.length < 2){ if(fill) fill.style.display = 'none'; }
-
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var index = 0;
 
-    slides.forEach(function(slide, n){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'dot';
-      b.setAttribute('aria-label', 'Show project ' + (n + 1));
-      b.addEventListener('click', function(){ go(n, true); });
-      dotBox.appendChild(b);
-    });
-    var dots = Array.prototype.slice.call(dotBox.children);
+    Array.prototype.forEach.call(
+      document.querySelectorAll('[data-carousel]'),
+      setup
+    );
 
-    function offsetOf(n){ return slides[n].offsetLeft - slides[0].offsetLeft; }
+    function setup(root){
+      var track  = root.querySelector('[data-track]');
+      if(!track) return;
 
-    function paint(){
-      dots.forEach(function(d, n){ d.setAttribute('aria-current', n === index ? 'true' : 'false'); });
-      if(count) count.textContent = (index + 1) + ' / ' + slides.length;
-    }
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.slide'));
+      if(!slides.length) return;
 
-    function restartTimer(){
-      if(!fill || reduced) return;
-      fill.style.animation = 'none';
-      void fill.offsetWidth;          // force reflow so the sweep starts over
-      fill.style.animation = '';
-    }
+      var fill   = root.querySelector('[data-fill]');
+      var dotBox = root.querySelector('[data-dots]');
+      var count  = root.querySelector('[data-count]');
+      var prev   = root.querySelector('[data-prev]');
+      var next   = root.querySelector('[data-next]');
+      var index  = 0;
 
-    function go(n, manual){
-      index = (n + slides.length) % slides.length;
-      track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
-      paint();
-      if(manual) restartTimer();
-    }
+      /* a single slide needs no timer, dots, or arrows */
+      if(slides.length < 2){
+        var bar = root.querySelector('.jet-timer');
+        if(bar) bar.style.display = 'none';
+        if(prev) prev.style.display = 'none';
+        if(next) next.style.display = 'none';
+      }
 
-    root.querySelector('[data-prev]').addEventListener('click', function(){ go(index - 1, true); });
-    root.querySelector('[data-next]').addEventListener('click', function(){ go(index + 1, true); });
-
-    track.addEventListener('keydown', function(e){
-      if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1, true); }
-      if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1, true); }
-    });
-
-    /* one sweep of the timer bar = one advance */
-    if(fill) fill.addEventListener('animationiteration', function(){ go(index + 1); });
-
-    function pause(){ root.classList.add('is-paused'); }
-    function play(){  root.classList.remove('is-paused'); }
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', play);
-    root.addEventListener('focusin',  pause);
-    root.addEventListener('focusout', play);
-    document.addEventListener('visibilitychange', function(){
-      document.hidden ? pause() : play();
-    });
-
-    /* keep the dots honest when the reader swipes the track directly */
-    var settle;
-    track.addEventListener('scroll', function(){
-      clearTimeout(settle);
-      settle = setTimeout(function(){
-        var best = 0, min = Infinity;
+      var dots = [];
+      if(dotBox && slides.length > 1){
         slides.forEach(function(slide, n){
-          var d = Math.abs(offsetOf(n) - track.scrollLeft);
-          if(d < min){ min = d; best = n; }
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'dot';
+          b.setAttribute('aria-label', 'Show item ' + (n + 1));
+          b.addEventListener('click', function(){ go(n, true); });
+          dotBox.appendChild(b);
         });
-        if(best !== index){ index = best; paint(); restartTimer(); }
-      }, 90);
-    }, { passive:true });
+        dots = Array.prototype.slice.call(dotBox.children);
+      }
 
-    paint();
+      function offsetOf(n){ return slides[n].offsetLeft - slides[0].offsetLeft; }
+
+      function paint(){
+        dots.forEach(function(d, n){
+          d.setAttribute('aria-current', n === index ? 'true' : 'false');
+        });
+        if(count) count.textContent = (index + 1) + ' / ' + slides.length;
+      }
+
+      function restartTimer(){
+        if(!fill || reduced) return;
+        fill.style.animation = 'none';
+        void fill.offsetWidth;          // force reflow so the sweep starts over
+        fill.style.animation = '';
+      }
+
+      function go(n, manual){
+        index = (n + slides.length) % slides.length;
+        track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
+        paint();
+        if(manual) restartTimer();
+      }
+
+      if(prev) prev.addEventListener('click', function(){ go(index - 1, true); });
+      if(next) next.addEventListener('click', function(){ go(index + 1, true); });
+
+      track.addEventListener('keydown', function(e){
+        if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1, true); }
+        if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1, true); }
+      });
+
+      /* one sweep of the timer bar = one advance */
+      if(fill && slides.length > 1){
+        fill.addEventListener('animationiteration', function(){ go(index + 1); });
+      }
+
+      function pause(){ root.classList.add('is-paused'); }
+      function play(){  root.classList.remove('is-paused'); }
+      root.addEventListener('mouseenter', pause);
+      root.addEventListener('mouseleave', play);
+      root.addEventListener('focusin',  pause);
+      root.addEventListener('focusout', play);
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ pause(); } else { play(); }
+      });
+
+      /* keep the dots honest when the reader swipes the track directly */
+      var settle;
+      track.addEventListener('scroll', function(){
+        clearTimeout(settle);
+        settle = setTimeout(function(){
+          var best = 0, min = Infinity;
+          slides.forEach(function(slide, n){
+            var d = Math.abs(offsetOf(n) - track.scrollLeft);
+            if(d < min){ min = d; best = n; }
+          });
+          if(best !== index){ index = best; paint(); restartTimer(); }
+        }, 90);
+      }, { passive:true });
+
+      paint();
+    }
+  })();
+
+  /* footer year */
+  (function(){
+    var y = document.getElementById('yr');
+    if(y) y.textContent = new Date().getFullYear();
   })();
 </script>
 
