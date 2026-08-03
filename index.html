@@ -318,7 +318,8 @@
   .slide h3 a:hover,
   .slide h3 a:focus-visible{ border-bottom-color:var(--lilac); }
 
-  /* timer bar — one sweep = one auto-advance */
+  /* position bar — fills as the reader moves through the slides.
+     Nothing auto-plays; the width is set by the script, not an animation. */
   .jet-timer{
     height:3px; margin-top:1.75rem;
     background:var(--rule);
@@ -329,12 +330,11 @@
     display:block; height:100%; width:100%;
     background:var(--sweep);
     transform-origin:left;
-    animation:sweep 7s linear infinite;
+    transform:scaleX(0);
+    transition:transform .3s ease;
   }
-  @keyframes sweep{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
-  .carousel.is-paused .jet-timer i{ animation-play-state:paused; }
   @media (prefers-reduced-motion: reduce){
-    .jet-timer i{ animation:none; transform:scaleX(0); }
+    .jet-timer i{ transition:none; }
   }
 
   .carousel__controls{
@@ -475,8 +475,8 @@
       <div class="band__rail"><span class="label">Research</span></div>
       <div>
         <h2>Ethics, Policy &amp; Social Implications of Health Screening</h2>
-        <p>I am a systems scientist focused on the ethical, legal, social, and financial impacts of preventative screening. My current work focuses on newborn screening and patient trust, with a specialized focus in genomic sequencing potential.</p>
-        <p>My dissertation, <em style="font-style:italic">"Newborn Screening Declination: Policies, Programs and Parents"</em>, asks how policies, programmatic capacity, and parental perspectives play a role in parental decision-making to have their child screened, as well as the state's responsibilty to screen. I am on the academic job market for positions beginning in 2027.</p>
+        <p>I am an systems scientist focused on the ethical, legal, social, and financial impacts of preventative screening. My current work focuses on newborn screening and patient trust, with a specialized focus in genomic sequencing potential.</p>
+        <p>My dissertation, <em style="font-style:italic">"Newborn Screening Declination: Policies, Programs and Parents"</em>, asks how policies, programmatic capacity, and parental perspectives play a role in parental decision-making to have their child screened, as well as state's responsibilty to screen. I am on the academic job market for positions beginning in 2027.</p>
       </div>
     </div>
   </section>
@@ -806,9 +806,10 @@
 
 <script>
   /* ---- Carousels -------------------------------------------------------
-     Every element with data-carousel gets its own independent instance:
-     auto-advance on a timer, pause on hover / keyboard focus / hidden tab,
-     and navigation by arrows, dots, swipe, or keyboard.
+     Every element with data-carousel gets its own independent instance.
+     Each one opens on the first slide and STAYS there: it moves only when the
+     reader clicks an arrow or a dot, presses the left/right arrow keys, or
+     swipes the track. Nothing advances on its own.
      Nothing here needs editing when you add or remove slides or carousels. */
   (function(){
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -831,9 +832,10 @@
       var prev   = root.querySelector('[data-prev]');
       var next   = root.querySelector('[data-next]');
       var index  = 0;
+      var single = slides.length < 2;
 
-      /* a single slide needs no timer, dots, or arrows */
-      if(slides.length < 2){
+      /* a single slide needs no bar, dots, or arrows */
+      if(single){
         var bar = root.querySelector('.jet-timer');
         if(bar) bar.style.display = 'none';
         if(prev) prev.style.display = 'none';
@@ -841,13 +843,13 @@
       }
 
       var dots = [];
-      if(dotBox && slides.length > 1){
+      if(dotBox && !single){
         slides.forEach(function(slide, n){
           var b = document.createElement('button');
           b.type = 'button';
           b.className = 'dot';
           b.setAttribute('aria-label', 'Show item ' + (n + 1));
-          b.addEventListener('click', function(){ go(n, true); });
+          b.addEventListener('click', function(){ go(n); });
           dotBox.appendChild(b);
         });
         dots = Array.prototype.slice.call(dotBox.children);
@@ -860,46 +862,25 @@
           d.setAttribute('aria-current', n === index ? 'true' : 'false');
         });
         if(count) count.textContent = (index + 1) + ' / ' + slides.length;
+        /* the bar reports how far through the set the reader is */
+        if(fill) fill.style.transform = 'scaleX(' + ((index + 1) / slides.length) + ')';
       }
 
-      function restartTimer(){
-        if(!fill || reduced) return;
-        fill.style.animation = 'none';
-        void fill.offsetWidth;          // force reflow so the sweep starts over
-        fill.style.animation = '';
-      }
-
-      function go(n, manual){
-        index = (n + slides.length) % slides.length;
+      function go(n){
+        index = (n + slides.length) % slides.length;   // wraps past either end
         track.scrollTo({ left: offsetOf(index), behavior: reduced ? 'auto' : 'smooth' });
         paint();
-        if(manual) restartTimer();
       }
 
-      if(prev) prev.addEventListener('click', function(){ go(index - 1, true); });
-      if(next) next.addEventListener('click', function(){ go(index + 1, true); });
+      if(prev) prev.addEventListener('click', function(){ go(index - 1); });
+      if(next) next.addEventListener('click', function(){ go(index + 1); });
 
       track.addEventListener('keydown', function(e){
-        if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1, true); }
-        if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1, true); }
+        if(e.key === 'ArrowRight'){ e.preventDefault(); go(index + 1); }
+        if(e.key === 'ArrowLeft'){  e.preventDefault(); go(index - 1); }
       });
 
-      /* one sweep of the timer bar = one advance */
-      if(fill && slides.length > 1){
-        fill.addEventListener('animationiteration', function(){ go(index + 1); });
-      }
-
-      function pause(){ root.classList.add('is-paused'); }
-      function play(){  root.classList.remove('is-paused'); }
-      root.addEventListener('mouseenter', pause);
-      root.addEventListener('mouseleave', play);
-      root.addEventListener('focusin',  pause);
-      root.addEventListener('focusout', play);
-      document.addEventListener('visibilitychange', function(){
-        if(document.hidden){ pause(); } else { play(); }
-      });
-
-      /* keep the dots honest when the reader swipes the track directly */
+      /* keep the dots and the bar honest when the reader swipes the track */
       var settle;
       track.addEventListener('scroll', function(){
         clearTimeout(settle);
@@ -909,10 +890,12 @@
             var d = Math.abs(offsetOf(n) - track.scrollLeft);
             if(d < min){ min = d; best = n; }
           });
-          if(best !== index){ index = best; paint(); restartTimer(); }
+          if(best !== index){ index = best; paint(); }
         }, 90);
       }, { passive:true });
 
+      /* open on slide 1 even if the browser restores a previous scroll position */
+      track.scrollLeft = 0;
       paint();
     }
   })();
